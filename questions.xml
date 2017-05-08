@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<questions>
+<question id="1">
+<description>
+    1. Grand Central Terminal, Park Avenue, New York is the world's?
+</description>
+<a> largest railway station</a>
+<b> highest railway station</b>
+<c> longest railway station</c>
+<d> none of the above</d>
+<correct>a</correct>
+<score>2</score>
+    </question>
+    
+<question id="2">
+<description>
+    2. Entomology is the science that studies
+</description>
+    <a> Behavior of human beings</a>
+    <b> Insects</b>
+    <c>The origin and history of technical and scientific terms</c>
+    <d>	The formation of rocks</d>
+<correct>b</correct>
+<score>2</score>
+    </question>
+    
+    
+<question id="3">
+<description>
+    3. Eritrea, which became the 182nd member of the UN in 1993, is in the continent of2. Entomology is the science that studies
+</description>
+    <a> Asia </a>
+    <b> Africa </b>
+    <c>Europe </c>
+    <d> Australia </d>
+<correct>c</correct>
+<score>2</score>
+    </question>
+    
+    <question id="4">
+<description>
+    4. For which of the following disciplines is Nobel Prize awarded?
+        </description>
+        <a> Physics and Chemistry</a>
+        <b>	Physiology or Medicine</b>
+        <c>	Literature, Peace and Economics</c>
+        <d>All of the above</d>
+<correct>d</correct>
+        <score>2</score>
+    </question>
+        
+    <question id="5">
+<description>
+     	5.Garampani sanctuary is located at
+        </description>
+        <a> Junagarh, Gujarat</a>
+        <b>Diphu, Assam</b>
+        <c>Kohima, Nagaland</c>
+        <d>Gangtok, Sikkim </d>
+<correct>d</correct>
+    <score>2</score>
+        
+  </question>
+
+
+</questions>
+
+         
+
+

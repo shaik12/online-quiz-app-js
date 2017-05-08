@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head></head>
+<title></title>
+<body>
+<div id="timer"></div>
+<div id="question"></div>    
+<div id="optiona">
+    <input type="radio" name="options" id="a" onclick="storeoptions(this.id)" /><span></span>
+    </div>
+    
+<div id="optionb">
+    <input type="radio" name="options" id="b" onclick="storeoptions(this.id)" /><span></span>
+    </div>
+<div id="optionc">
+    <input type="radio" name="options" id="c" onclick="storeoptions(this.id)" /><span></span>
+    </div>
+<div id="optiond">
+    <input type="radio" name="options" id="d" onclick="storeoptions(this.id)" /><span></span>
+    </div>
+    <input type="button" value="First" onclick="firstquestion()"  />
+    <input type="button" value="Next" onclick="nextquestion()"  />
+    <input type="button" value="Previous" onclick="prevquestion()"  />
+    <input type="button" value="Last" onclick="lastquestion()"  />
+    <input type="button" value="Submit" onclick="submit()"  />
+    <div id="result" style="color:blue; font-size:25px; font-color:red" > </div>
+
+</body>
+
+<script type="text/javascript">
+     var totalDuration = "300000";
+    var timer = 0;
+    var x=setInterval(function () { displayTimer(); }, 1000);
+ var xmlDoc;
+ var index=0;
+ var selectedoptions=[];
+var xmlhttp = new XMLHttpRequest();
+    debugger;
+    xmlhttp.open("GET", "questions.xml", false);
+    xmlhttp.send();
+    xmlDoc = xmlhttp.responseXML;
+    onload=true;
+
+    Loadquestion(index);
+       function displayTimer()
+    {        
+        timer += 1000;
+        var seconds = timer * 0.001;
+        document.getElementById("timer").innerHTML= secondsToString(seconds);
+        if(timer>totalDuration)
+        {
+            submit();
+        }
+    }
+
+    function secondsToString(seconds) {
+        var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600);
+        var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
+        var numseconds = (((seconds % 31536000) % 86400) % 3600) % 60;        
+            return numhours + " : " + numminutes + " : " + numseconds;
+    }
+    
+    function Loadquestion(index)
+    {
+     document.getElementById("question").innerHTML=xmlDoc.childNodes[0].children[index].children[0].innerHTML;
+     document.getElementById("optiona").children[1].innerHTML=xmlDoc.childNodes[0].children[index].children[1].innerHTML;
+     document.getElementById("optionb").children[1].innerHTML=xmlDoc.childNodes[0].children[index].children[2].innerHTML;
+     document.getElementById("optionc").children[1].innerHTML=xmlDoc.childNodes[0].children[index].children[3].innerHTML;
+     document.getElementById("optiond").children[1].innerHTML=xmlDoc.childNodes[0].children[index].children[4].innerHTML
+    }
+    
+    function nextquestion()
+    {
+        
+        index++;
+        if(index > xmlDoc.childNodes[0].children.length - 1)
+         alert("This is Last question");
+        Loadquestion(index);
+        Clearradio();
+        Loadradio();
+    }
+    
+    function prevquestion()
+    {
+        index--;
+        if(index<0)
+        alert("This is first question");
+        Loadquestion(index);
+        Clearradio();
+        Loadradio();
+    }
+    function firstquestion()
+    {
+        index=0;
+        Loadquestion(index);d
+        Clearradio();
+        Loadradio();
+    }
+    function lastquestion()
+    {
+        index=xmlDoc.childNodes[0].children.length-1;
+        Loadquestion(index);
+        Clearradio();
+        Loadradio();
+    }
+    
+    function storeoptions(id)
+    {
+        selectedoptions[index]=id;
+    }
+    function Clearradio()
+    {
+        document.getElementById('a').checked=false;
+        document.getElementById('b').checked=false;
+        document.getElementById('c').checked=false;
+        document.getElementById('d').checked=false;
+    }
+    function Loadradio()
+    {
+     var radioid=selectedoptions[index];
+         if (radioid != undefined)
+            document.getElementById(radioid).checked = true;
+        else
+            Clearradio();
+    }
+    
+    function submit() 
+    {
+        clearTimeout(x);
+        var totalScore = 0;
+        for (var i = 0; i < xmlDoc.childNodes[0].children.length; i++) {
+                var rightoption = xmlDoc.childNodes[0].children[i].children[5].innerHTML;
+                var score = xmlDoc.childNodes[0].children[i].children[6].innerHTML;
+                if (selectedoptions[i] != undefined)
+                {
+                    if (rightoption == selectedoptions[i].toUpperCase()) {
+                        totalScore += eval(score);
+                        alert("Your Score  " + totalScore);
+                    }
+                }
+            }
+            if (totalScore == "" || totalScore == 0)
+                alert("Your score is 0");
+            if(totalScore>4)
+                document.getElementById("result").innerHTML = "Congragulation!!! You scored distinction";
+            else
+                document.getElementById("result").innerHTML = "Sorry!!! Required more preparation";
+       
+    }
+    
+            
+                     
+                    
+                    
+   
+        
+        
+</script>
+</html>
